@@ -1,0 +1,98 @@
+#!/usr/bin/env perl
+
+use strict;
+use warnings;
+use Data::Dumper;
+
+use FindBin;
+BEGIN {
+    unshift @INC, "$FindBin::Bin/../lib"
+}
+
+use LWP::UserAgent;
+use HTML::TreeBuilder;
+use WeblioSearch::Model::Rank;
+use Date::Simple(':all');
+
+my $url = "http://ejje.weblio.jp/ranking";
+my $date_format;
+
+if( defined $ARGV[0] ){
+    print "date=" . $ARGV[0] . "\n";
+    $url = "http://ejje.weblio.jp/ranking/$ARGV[0]";
+    my $date = d8($ARGV[0]);
+    $date_format = $date->format('%Y-%m-%d');
+
+}else{
+    my $date = Date::Simple->new();
+    $date_format = $date->format('%Y-%m-%d');
+
+}
+
+if( defined $ARGV[1] ){
+    print "category=" . $ARGV[1] . "\n";
+}
+
+# HTMLを取得
+print "url=" . $url . "\n";
+print "date=" . $date_format . "\n";
+
+my $ua = LWP::UserAgent->new();
+my $res = $ua->get($url);
+
+if($res->is_success){
+    my $content = $res->content;
+
+    # HTMLをパース
+    my $tree = HTML::TreeBuilder->new();
+    $tree->parse($content);
+
+    # 行単位にデータを取得して整形
+    my $table = $tree->look_down('class', 'mainRankCC');
+    if( defined $table ){
+        my @list = $table->find('tr');
+        my $rank_list;
+        for my $tr (@list) {
+            my $td1 = $tr->find('td');
+            my $td2 = $td1->right;
+
+            # 空白を除去して設定
+            my $items = {};
+            $items->{rank} = trim($td1->as_text);
+            $items->{word} = trim($td2->as_text);
+
+            # 配列に追加(配列のリファレンスをデリファレンス)
+            push(@$rank_list, $items);
+        }
+
+        # 解析したHTMLを保存
+        my $model = new WeblioSearch::Model::Rank();
+
+        # 指定日のデータを削除
+        my $count = $model->delete({'date' => $date_format});
+
+        # １件づつデータを追加
+        for my $row (@$rank_list){
+            my $row = $model->insert({
+                'rank' => $row->{rank},
+                'word' => $row->{word},
+                'category' => 'ALL',
+                'date' => $date_format,
+            });
+
+        }
+
+    }else{
+        print "rank取得失敗";
+    }
+
+ }else{
+    print "get処理失敗";
+ }
+
+# 空白除去
+sub trim{
+    my ($value) = shift;
+    $value =~ s/^ *(.*?) *$/$1/;
+    return $value;
+}

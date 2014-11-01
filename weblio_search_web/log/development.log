@@ -1,0 +1,14 @@
+[Sat Nov  1 15:11:12 2014] [info] Listening at "http://*:3000".
+[Sat Nov  1 15:11:19 2014] [debug] Your secret passphrase needs to be changed!!!
+[Sat Nov  1 15:11:19 2014] [debug] GET "/".
+[Sat Nov  1 15:11:19 2014] [debug] Routing to controller "WeblioSearch::Web::Controller::Example" and action "welcome".
+[Sat Nov  1 15:11:19 2014] [debug] Rendering template "example/welcome.html.ep".
+[Sat Nov  1 15:11:19 2014] [debug] Rendering template "layouts/default.html.ep".
+[Sat Nov  1 15:11:19 2014] [debug] 200 OK (0.013313s, 75.115/s).
+[Sat Nov  1 15:14:28 2014] [info] Listening at "http://*:3000".
+[Sat Nov  1 15:14:30 2014] [debug] Your secret passphrase needs to be changed!!!
+[Sat Nov  1 15:14:30 2014] [debug] GET "/".
+[Sat Nov  1 15:14:30 2014] [debug] Routing to controller "WeblioSearch::Web::Controller::Root" and action "index".
+[Sat Nov  1 15:14:30 2014] [debug] Rendering template "root/index.html.ep".
+[Sat Nov  1 15:14:30 2014] [debug] Rendering template "layouts/default.html.ep".
+[Sat Nov  1 15:14:30 2014] [debug] 200 OK (0.014384s, 69.522/s).
