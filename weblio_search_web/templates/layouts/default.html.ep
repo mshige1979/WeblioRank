@@ -28,6 +28,16 @@
         <script src="/js/app.js"></script>
   </head>
   <body>
-    <%= content %>
+    <div class="header pure-menu pure-menu-open pure-menu-horizontal">
+        <a href="/" class="pure-menu-heading"><%= title %></a>
+    </div>
+    <div class="content">
+        <div class="pricing-tables pure-g">
+        <%= content %>
+        </div>
+    </div>
+    <div class="footer">
+        <p>Copyright (c) 2014 @m_shige1979 All Rights Reserved.</p>
+    </div>
   </body>
 </html>

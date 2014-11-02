@@ -40,7 +40,10 @@ use WeblioSearch::Model::Rank;
    $log->debug(Dumper($list));
 
    # json指定
-   $self->render(json => $list);
+   $self->render(json => {
+    list => $list,
+    date => $date_format
+   });
 
  }
 
@@ -87,7 +90,7 @@ use WeblioSearch::Model::Rank;
    $log->debug(Dumper($list));
 
    # json指定
-   $self->render(json => $list);
+   $self->render(json => {list => $list});
 
  }
 

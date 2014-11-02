@@ -7,6 +7,14 @@ $(function(){
     function AppViewModel() {
         this.firstName = "Bert";
         this.lastName = "Bertington";
+
+        self.rankListData = ko.observable();
+        self.rankList = function(){
+            $.get('/api/rank', {}, self.rankListData);
+        };
+
+        // すぐに表示
+        self.rankList();
     }
 
     // Activates knockout.js

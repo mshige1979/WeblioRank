@@ -1,10 +1,23 @@
 % layout 'default';
-% title 'Welcome';
-<h2><%= $msg %></h2>
-This page was generated from the template "templates/example/welcome.html.ep"
-and the layout "templates/layouts/default.html.ep",
-<a href="<%== url_for %>">click here</a> to reload the page or
-<a href="/index.html">here</a> to move forward to a static page.
+% title 'WeblioSearchRanking';
 
-<p>First name: <strong data-bind="text: firstName"></strong></p>
-<p>Last name: <strong data-bind="text: lastName"></strong></p>
+<div class="pure-u-1 pure-u-md-1 blobk-area">
+    <div class="block">
+        <div class="title">
+            <h2>今日の順位</h2>
+        </div>
+        <div data-bind="with: rankListData">
+            <p><strong data-bind="text: date"></strong></p>
+            <table class="rank pure-table">
+                <thead><tr><th>rank</th><th>word</th></thead>
+                <tbody data-bind="foreach: list">
+                    <tr>
+                        <td class="number" data-bind="text: rank"></td>
+                        <td data-bind="text: word"></td>
+                    </tr>
+                </tbody>
+          </table>
+        </div>
+
+    </div>
+</div>
