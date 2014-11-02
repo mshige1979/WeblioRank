@@ -13,6 +13,13 @@ sub startup {
 
   # 初期ページ
   $r->get('/')->to('root#index');
+
+  # 日付でその日付の順位を取得
+  $r->get('/api/rank')->to('app#rank');
+  $r->get('/api/rank/:date')->to('app#rank');
+
+  # 指定期間の順位を取得
+  $r->get('/api/rankPeriod/:date1/:date2')->to('app#rankPeriod');
 }
 
 1;
