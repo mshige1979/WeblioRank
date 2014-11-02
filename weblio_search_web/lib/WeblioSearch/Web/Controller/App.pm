@@ -18,12 +18,13 @@ use WeblioSearch::Model::Rank;
    if(defined $date_param){
      $date = d8($date_param);
      my $date_check = date($date_param);
-     $log->debug("date check = " . $date_check);
 
      # 日付チェック失敗時はエラー画面へ遷移
      if(!defined $date_check){
        #die;
        return $self->render_exception;
+     }else{
+        $log->debug("date check = " . $date_check);
      }
 
    }else{
