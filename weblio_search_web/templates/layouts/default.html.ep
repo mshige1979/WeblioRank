@@ -1,5 +1,33 @@
 <!DOCTYPE html>
 <html>
-  <head><title><%= title %></title></head>
-  <body><%= content %></body>
+  <head>
+    <title><%= title %></title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <meta http-equiv="Pragma" content="no-cache" />
+        <meta http-equiv="cache-control" content="no-cache" />
+        <meta http-equiv="expires" content="0" />
+        <meta name="author" content="m_shige1979">
+        <meta name="description" content="英語の使用頻度の参考サイト" />
+        <meta name="keywords" content="weblio,順位,使用頻度,英語,翻訳" />
+
+        <meta property="og:description" content="英語の使用頻度の参考サイト" />
+        <meta property="og:site_name" content="WeblioSearchRanking" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="" />
+        <meta property="og:title" content="WeblioSearchRanking" />
+        <meta property="og:image" content="">
+
+        <link rel="icon" href="../../favicon.ico">
+        <link href="/css/pure-release-0.5.0/pure-min.css" rel="stylesheet" />
+        <link href="/css/app.css" rel="stylesheet" />
+        <script src="/js/jquery-2.1.1.min.js"></script>
+        <script src="/js/knockout-3.2.0.js"></script>
+        <script src="/js/app.js"></script>
+  </head>
+  <body>
+    <%= content %>
+  </body>
 </html>
