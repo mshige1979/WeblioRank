@@ -91,8 +91,55 @@ use WeblioSearch::Model::Rank;
    $log->debug(Dumper($list));
 
    # json指定
-   $self->render(json => {list => $list});
+   $self->render(json => {
+       list => $list,
+       date1 => $date_format1,
+       date2 => $date_format2
+      });
 
  }
+
+ # 日付の順位を取得
+  sub rankTop {
+    my $self = shift;
+    my $date_param = $self->param('date');;
+    my $log = $self->app->log;
+    my $date_format;
+    my $date;
+    my $list = [];
+
+    # 日付チェック
+    if(defined $date_param){
+      $date = d8($date_param);
+      my $date_check = date($date_param);
+
+      # 日付チェック失敗時はエラー画面へ遷移
+      if(!defined $date_check){
+        #die;
+        return $self->render_exception;
+      }else{
+         $log->debug("date check = " . $date_check);
+      }
+
+    }else{
+      $date = Date::Simple->new();
+    }
+
+    # 日付
+    $date_format = $date->format('%Y-%m-%d');
+    $log->debug("date = " . $date_format);
+
+    # 日付パラメータでデータを取得
+    my $model = new WeblioSearch::Model::Rank();
+    $list = $model->find_date($date_format);
+    $log->debug(Dumper($list));
+
+    # json指定
+    $self->render(json => {
+     list => $list,
+     date => $date_format
+    });
+
+  }
 
 1;

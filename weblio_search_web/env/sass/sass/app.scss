@@ -58,13 +58,28 @@
     margin-top: 10px;
     margin-bottom: 10px;
 
+    .menu-area{
+      margin: 10px;
+    }
+
     .blobk-area{
+      margin: 10px;
+
       .block{
         .title{
         }
 
-        table.rank{
-          width: 600px;
+        .rank-list-data{
+          .date{
+            margin-bottom: 5px;
+
+            .arrow{
+              text-decoration: none;
+            }
+          }
+          table.rank{
+            width: 600px;
+          }
         }
       }
     }

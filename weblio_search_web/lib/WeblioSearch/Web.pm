@@ -20,6 +20,9 @@ sub startup {
 
   # 指定期間の順位を取得
   $r->get('/api/rankPeriod/:date1/:date2')->to('app#rankPeriod');
+
+  # 1位の表示
+  $r->get('/api/rankTop')->to('app#rankTop');
 }
 
 1;
