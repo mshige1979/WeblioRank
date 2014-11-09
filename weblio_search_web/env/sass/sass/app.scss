@@ -35,6 +35,16 @@
           }
         }
       }
+
+      table.week{
+        width: 100%;
+
+        tr{
+          td{
+            white-space: nowrap;
+          }
+        }
+      }
     }
   }
 }
@@ -49,6 +59,7 @@
   }
 }
 
+// PC
 @media screen and (min-width: 640px) {
   .header{
     text-align: left;
@@ -79,6 +90,18 @@
           }
           table.rank{
             width: 600px;
+          }
+
+          table.week{
+            float: left;
+            width: 120px;
+            font-size: 80%;
+
+            tr{
+              td{
+                white-space: nowrap;
+              }
+            }
           }
         }
       }

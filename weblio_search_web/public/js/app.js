@@ -19,6 +19,10 @@ $(function(){
             {
                 'id':'rankTopList',
                 'disp': '1位'
+            },
+            {
+                'id':'rankCountList',
+                'disp': 'ランクイン'
             }
         ];
 
@@ -26,6 +30,7 @@ $(function(){
         self.rankListData = ko.observable();
         self.rankWeekListData = ko.observable();
         self.rankTopListData = ko.observable();
+        self.rankCountListData = ko.observable();
 
         // 指定のハッシュへパスを変更
         self.goToLink = function(link) {
@@ -39,6 +44,7 @@ $(function(){
                 self.selectedLinkId("rankList");
                 self.rankWeekListData(null);
                 self.rankTopListData(null);
+                self.rankCountListData(null);
                 $.get('/api/rank', {}, self.rankListData);
             });
 
@@ -48,7 +54,8 @@ $(function(){
                 self.selectedLinkId("rankWeekList");
                 self.rankListData(null);
                 self.rankTopListData(null);
-                $.get('/api/rankPeriod/20141026/20141101', {}, self.rankWeekListData);
+                self.rankCountListData(null);
+                $.get('/api/rankPeriod/20141026', {}, self.rankWeekListData);
             });
 
             // 1位
@@ -57,7 +64,18 @@ $(function(){
                 self.selectedLinkId("rankTopList");
                 self.rankWeekListData(null);
                 self.rankListData(null);
+                self.rankCountListData(null);
                 $.get('/api/rankTop', {}, self.rankTopListData);
+            });
+
+            // ランクイン
+            this.get('#rankCountList', function() {
+                console.log("rankCountList");
+                self.selectedLinkId("rankCountList");
+                self.rankWeekListData(null);
+                self.rankListData(null);
+                self.rankTopListData(null);
+                $.get('/api/rankCount', {}, self.rankCountListData);
             });
 
             // 初期

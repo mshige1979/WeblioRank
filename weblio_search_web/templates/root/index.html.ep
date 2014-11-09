@@ -14,7 +14,12 @@
                 <a class="arrow" href="#">▶</a>
             </p>
             <table class="rank pure-table">
-                <thead><tr><th>rank</th><th>word</th></thead>
+                <thead>
+                    <tr>
+                        <th>順位</th>
+                        <th>単語</th>
+                    </tr>
+                </thead>
                 <tbody data-bind="foreach: list">
                     <tr>
                         <td class="number" data-bind="text: rank"></td>
@@ -25,13 +30,76 @@
         </div>
 
     </div>
+
     <%# rankListData:週間 %>
     <div class="block" data-bind="with: rankWeekListData">
-    rankWeekListData
+        <div class="title">
+            <h2>週表示での順位</h2>
+        </div>
+        <div class="rank-list-data">
+            <div data-bind="foreach: list">
+                <table class="week pure-table">
+                    <thead>
+                        <tr>
+                            <th data-bind="text: date"></th>
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach: item_list">
+                        <tr>
+                            <td data-bind="text: word"></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div style="clear: both;"></div>
+        </div>
     </div>
-    <%# rankListData:週間 %>
+
+    <%# rankListData:TOP %>
     <div class="block" data-bind="with: rankTopListData">
-    rankTopListData
+        <div class="title">
+            <h2>TOP数の順位</h2>
+        </div>
+        <div class="rank-list-data">
+            <table class="rank pure-table">
+                <thead>
+                    <tr>
+                        <th>件数</th>
+                        <th>単語</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: list">
+                    <tr>
+                        <td class="number" data-bind="text: count"></td>
+                        <td data-bind="text: word"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <%# rankListData:Count %>
+    <div class="block" data-bind="with: rankCountListData">
+        <div class="title">
+            <h2>ランクイン数の順位</h2>
+        </div>
+        <div class="rank-list-data">
+            <table class="rank pure-table">
+                <thead>
+                    <tr>
+                        <th>件数</th>
+                        <th>単語</th>
+                    </tr>
+                </thead>
+                <tbody data-bind="foreach: list">
+                    <tr>
+                        <td class="number" data-bind="text: count"></td>
+                        <td data-bind="text: word"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
 </div>

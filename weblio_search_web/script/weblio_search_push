@@ -78,6 +78,7 @@ if($res->is_success){
                 'word' => $row->{word},
                 'category' => 'ALL',
                 'date' => $date_format,
+                'created' => \'NOW()',
             });
 
         }
